@@ -1,8 +1,19 @@
 Rails.application.routes.draw do
-  get 'employee_sessions/sign_up'
+  
+  root 'home#home'
 
-  get 'employee_sessions/sign_in'
+  get 'home/home'
 
+  post 'employee_sessions/sign_up' => 'employee_sessions#sign_up', as: :sign_up
+
+  post 'employee_sessions/sign_in' => 'employee_sessions#sign_in', as: :sign_in
+
+  delete 'employee_sessions/log_out' => 'employee_sessions#log_out', as: :log_out
+  #for employers
+  resources :employers, only: [:new , :edit , :destroy]
+  get 'employers/sign_in' => 'employers#sign_in' , as: :employer_sign_in
+  #for the employer_details
+  resources :employer_details, only: [:edit , :update , :show ]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

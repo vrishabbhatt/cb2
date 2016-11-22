@@ -1,0 +1,23 @@
+html
+  head
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
+    title RecipeMaker
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  body
+    .navbar.navbar-default
+      / - if employer_signed_in?
+      -if employer_signed_in?
+        ul.nav.navbar-nav
+          li.nav-list
+            = link_to('Logout', log_out_path, :method => :delete)
+      - else
+        ul.nav.navbar-nav
+          li.nav-list
+            = link_to('Sign Up', new_employer_path)
+          li.nav-list
+            = link_to('Log In', employer_sign_in_path)
+    .outer-container
+      .text-center
+       = yield

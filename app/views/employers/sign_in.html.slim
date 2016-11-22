@@ -1,0 +1,9 @@
+.h1 - this page is the page for new employers to sign in
+.col-md-offset-4.coll-md-4
+	.col-md-6.text-center.well
+		= simple_form_for @employer , url: sign_in_path do |f|
+			/ validations are yet to be added
+			= f.input :email
+			= f.input :ph_no , label: "phone number"
+
+			= f.submit "sign up" , class: "btn btn-warning"
