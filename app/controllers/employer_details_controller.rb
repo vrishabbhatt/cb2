@@ -21,7 +21,11 @@ class EmployerDetailsController < ApplicationController
 		# 	@employer.update(employer_params)
 		end
 		update_employer
-		redirect_to root_path
+		if 	@employer.save
+			redirect_to root_path
+		else
+			render 'edit'
+		end
 	end
 
 	def send_verification
@@ -58,7 +62,6 @@ class EmployerDetailsController < ApplicationController
 			@employer.ph_no = params[:employer][:ph_no]
 			@employer.dob = params[:employer][:dob]
 			@employer.location = params[:employer][:location]
-			@employer.save
 		end
 
 		def create_and_send_eauth

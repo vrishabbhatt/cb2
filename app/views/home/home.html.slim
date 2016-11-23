@@ -4,3 +4,8 @@ p Find me in app/views/home/home.html.slim
 	.text-center
 		.h1
 			= @employer.email
+	br
+	- if employer_is_verified?
+		| verified
+	- else
+		|not verified

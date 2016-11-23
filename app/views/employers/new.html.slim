@@ -1,7 +1,7 @@
 .h1 - this page is the page for new employers to sign up
 .col-md-offset-4.coll-md-4
 	.col-md-6.text-center.well
-		= simple_form_for @employer , url: sign_up_path do |f|
+		= simple_form_for @employer , validate: true ,url: sign_up_path do |f|
 			/ validations are yet to be added
 			= f.input :email
 			= f.input :ph_no , label: "phone number"

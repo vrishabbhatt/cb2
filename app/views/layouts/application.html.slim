@@ -8,8 +8,10 @@ html
   body
     .navbar.navbar-default
       / - if employer_signed_in?
-      -if employer_signed_in?
-        ul.nav.navbar-nav
+      ul.nav.navbar-nav
+        li.nav-list
+          = link_to('home', root_path)
+        -if employer_signed_in?
           li.nav-list
             = link_to('Logout', log_out_path, :method => :delete)
           li.nav-list 
@@ -17,10 +19,8 @@ html
           -if !employer_is_verified?
             li.nav-list style="float: right;"
               = link_to('become verified', employ_verification_path )
-              
-
-      - else
-        ul.nav.navbar-nav
+        - else
+       
           li.nav-list
             = link_to('Sign Up', new_employer_path)
           li.nav-list

@@ -5,8 +5,11 @@ class EmployeeSessionsController < ApplicationController
   	if @employer.save
 	  	sign_through
 	  	# redirect_to root_path
+      redirect_to edit_employer_detail_path(@employer.id)
+    else
+      # redirect_to root_path
+      render 'employers/new'
   	end
-  	redirect_to edit_employer_detail(@employer.id)
   end
 
   def sign_in

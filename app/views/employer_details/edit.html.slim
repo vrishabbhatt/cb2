@@ -1,7 +1,7 @@
 .h1 - To edit employer account detaitls
 .col-md-8.col-md-offset-2
 	.text-center
-		= simple_form_for @employer ,html: {class: "well form-horizontal"} , url: employer_detail_path(@employer.id) do |f|
+		= simple_form_for @employer,validate: true ,html: {class: "well form-horizontal"} , url: employer_detail_path(@employer.id) do |f|
 			= f.input :name
 			= f.input :email
 			= f.input :ph_no , label: "phone number"
