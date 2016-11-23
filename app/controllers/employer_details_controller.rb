@@ -1,5 +1,5 @@
 class EmployerDetailsController < ApplicationController
-	before_action :authorize_employer
+	before_action :authorize_employer , :current_viewing_employer
 	def show
 		find_employer
 	end	
@@ -71,5 +71,9 @@ class EmployerDetailsController < ApplicationController
 			EmployerMailer.verification_mail(@employer).deliver_later
 		end
 
-	
+		def current_viewing_employer
+			if current_employer != find_employer
+				redirect_to root_path
+			end
+		end
 end
