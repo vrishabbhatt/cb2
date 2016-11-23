@@ -46,6 +46,8 @@ gem 'activerecord-session_store'
 gem 'client_side_validations'
 #for email validation
 gem 'validates_email_format_of'
+#for setting of env variables
+gem 'figaro'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
