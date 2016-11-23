@@ -9,3 +9,20 @@
 			= f.input :location
 
 			= f.submit "update" , class: "btn btn-info"
+
+
+
+	.employer_verified
+		- if !@employer.mail_sent && !@employer.is_verified
+			.h4
+				| your account has not been verified 
+				| click here to verify
+				br
+				.text-center
+					= link_to("send verification code" , send_verification_email_path(@employer.id)  , class: "btn btn-warning ", remote: true)
+				br
+	.employer-mail-message.hidden
+		= link_to "verify code" , employ_verification_path , class: "btn btn-info"
+	-if @employer.mail_sent && !@employer.is_verified
+		= link_to "verify code" , employ_verification_path , class: "btn btn-info"
+		

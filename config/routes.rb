@@ -15,6 +15,11 @@ Rails.application.routes.draw do
   #for the employer_details
   resources :employer_details, only: [:edit , :update , :show ]
   get 'employer_details/send-verification/:id' => 'employer_details#send_verification' , as: :send_verification_email
+  #for the verification
+  get 'verification' => 'verification#employ_verification' , as: :employ_verification
+  # post 'verification/employee' => 'employee#verify_employ' , as: :verify_employ
+  # patch 'verification/employee' => 'employee#verify_employ' , as: :verify_employ
+  match 'verification/employee' => 'verification#verify_employ' , via: [:post , :patch] , as: :verify_employ 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

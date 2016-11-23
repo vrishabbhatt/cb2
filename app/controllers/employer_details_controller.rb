@@ -1,4 +1,5 @@
 class EmployerDetailsController < ApplicationController
+	before_action :authorize_employer
 	def show
 		find_employer
 	end	
@@ -27,6 +28,7 @@ class EmployerDetailsController < ApplicationController
 		find_employer
 		unless @employer.mail_sent && @employer.is_verified 
 		#call mailer to send mail
+			create_and_send_eauth
 			@employer.mail_sent = true
 			@employer.save
 			respond_to do |format|
@@ -58,4 +60,13 @@ class EmployerDetailsController < ApplicationController
 			@employer.location = params[:employer][:location]
 			@employer.save
 		end
+
+		def create_and_send_eauth
+			eauth = Eauth.find_by(employer_id: @employer.id)||Eauth.new(employer_id: @employer.id)
+			eauth.auth_code = SecureRandom.base64
+			eauth.save
+			EmployerMailer.verification_mail(@employer).deliver_later
+		end
+
+	
 end

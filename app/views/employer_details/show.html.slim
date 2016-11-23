@@ -25,7 +25,8 @@
 						.text-center
 								= link_to("send verification code" , send_verification_email_path(@employer.id)  , class: "btn btn-warning ", remote: true)
 			br
-			.employer-mail-message
+			.employer-mail-message.
+				= link_to "verify code" , employ_verification_path , class: "btn btn-info"
 		.employer-edit
 			.btn
 				= link_to "edit details" , edit_employer_detail_path(@employer.id) , class: "btn btn-danger "

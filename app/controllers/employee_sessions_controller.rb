@@ -1,4 +1,5 @@
 class EmployeeSessionsController < ApplicationController
+
   def sign_up
   	@employer = Employer.new(employer_params)
   	if @employer.save
@@ -14,9 +15,10 @@ class EmployeeSessionsController < ApplicationController
 	  	if @employer.ph_no != params[:employer][:ph_no]
 	  		create_fake_employer
 	  		render 'employers/sign_in', employer: @employer
+	  	else
+	  		sign_through
+	  		redirect_to root_path
 	  	end
-	  	sign_through
-	  	redirect_to root_path
 	else
 			create_fake_employer
 	  		render template: 'employers/sign_in'

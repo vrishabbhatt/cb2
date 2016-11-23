@@ -1,0 +1,23 @@
+.h1 - Employ verification will happen here
+
+-if !current_employer.mail_sent
+	.col-md-offset-3.col-md-6
+		.text-center.h4
+			.h4
+				| Verification mail not sent 
+				| click here to send
+				br
+				.text-center
+					= link_to("send verification code" , send_verification_email_path(@employer.id)  , class: "btn btn-warning ", remote: true)
+				br
+-else
+	| mail has been sent
+
+
+br
+br
+.col-md-offset-3.col-md-6
+	.text-center
+		= simple_form_for @employer , url: verify_employ_path do |f|
+			= f.input :validation_string , label: "code please" , placeholder: "enter the code here" , label_html: {class: "text-left"}
+			= f.submit "verify" , class: "btn btn-info"
