@@ -3,8 +3,9 @@ class EmployeeSessionsController < ApplicationController
   	@employer = Employer.new(employer_params)
   	if @employer.save
 	  	sign_through
-	  	redirect_to root_path
+	  	# redirect_to root_path
   	end
+  	redirect_to edit_employer_detail(@employer.id)
   end
 
   def sign_in

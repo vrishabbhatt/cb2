@@ -1,7 +1,7 @@
 html
   head
     meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
-    title RecipeMaker
+    title cb2
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
@@ -12,6 +12,12 @@ html
         ul.nav.navbar-nav
           li.nav-list
             = link_to('Logout', log_out_path, :method => :delete)
+          li.nav-list style="float: right;"
+            = link_to('Account details', employer_detail_path(employer_id) )
+          -if employer_is_verified?
+            li.nav-list style="float: right;"
+              = link_to('become verified', employer_detail_path(employer_id) )
+
       - else
         ul.nav.navbar-nav
           li.nav-list

@@ -1,0 +1,31 @@
+.h1 - Account details will be displayed here
+.col-md-offset-2.col-md-6
+	.text-center.inline
+		.text-left.h3
+			.employer-name
+				| Name: 
+				= @employer.name
+			br
+			.employer-email
+				|email:
+				= @employer.email
+			br
+			.employer-ph_no
+				| Phone number:
+				= @employer.ph_no
+			br
+			.employer_verified
+				- if @employer.mail_sent && !@employer.is_verified
+					.h4 Verification mail sent
+				- elsif !@employer.mail_sent && !@employer.is_verified
+					.h4
+						| your account has not been verified 
+						| click here to verify
+						br
+						.text-center
+								= link_to("send verification code" , send_verification_email_path(@employer.id)  , class: "btn btn-warning ", remote: true)
+			br
+			.employer-mail-message
+		.employer-edit
+			.btn
+				= link_to "edit details" , edit_employer_detail_path(@employer.id) , class: "btn btn-danger "

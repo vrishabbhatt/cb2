@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get 'employers/sign_in' => 'employers#sign_in' , as: :employer_sign_in
   #for the employer_details
   resources :employer_details, only: [:edit , :update , :show ]
+  get 'employer_details/send-verification/:id' => 'employer_details#send_verification' , as: :send_verification_email
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
